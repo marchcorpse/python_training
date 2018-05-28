@@ -20,8 +20,8 @@ class Application:
         self.wd = WebDriver()
         # ---------Chrome Headless---------------------------
         # self.wd = webdriver.Chrome(chrome_options=options)
-        # self.wd.implicitly_wait(5)
         # ---------------------------------------------------
+        # self.wd.implicitly_wait(5)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
