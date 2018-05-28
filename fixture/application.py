@@ -18,6 +18,9 @@ class Application:
 
     def __init__(self):
         self.wd = WebDriver()
+        #---------------PhantomJS----------------------------
+        # self.wd = webdriver.PhantomJS()
+        #---------------------------------------------------
         # ---------Chrome Headless---------------------------
         # self.wd = webdriver.Chrome(chrome_options=options)
         # ---------------------------------------------------
