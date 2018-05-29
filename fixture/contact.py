@@ -69,6 +69,7 @@ class ContactHelper:
         self.fill_contact_form(new_contact_data)
         # submit modification
         wd.find_element_by_name("update").click()
+        # wd.switch_to_alert().accept()
         self.open_home_page()
         self.contact_cache = None
 
@@ -80,12 +81,14 @@ class ContactHelper:
     contact_cache = None
 
     def get_contact_list(self):
-        wd = self.app.wd
-        self.open_home_page()
-        self.contact_cache = []
-        for element in wd.find_elements_by_css_selector("tr[name*='entry']"):
-            text = element.find_element_by_xpath(".//td[3]").text
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            self.contact_cache.append(Contact(firstname=text, id=id))
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.open_home_page()
+            self.contact_cache = []
+            for element in wd.find_elements_by_css_selector("tr[name*='entry']"):
+                text = element.find_element_by_xpath(".//td[3]").text
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                # id = element.find_element_by_xpath(".//input[@name='selected[]']").get_attribute("value")
+                self.contact_cache.append(Contact(firstname=text, id=id))
         return list(self.contact_cache)
 
